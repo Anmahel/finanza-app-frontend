@@ -1,0 +1,348 @@
+/* ==========================================================================
+   LAYOUT Y CONTENEDORES
+   ========================================================================== */
+.layout-parcelas-grid {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    grid-template-areas: 
+        "formulario"
+        "lista";
+    height: -webkit-fill-available;
+    grid-template-rows: auto 1fr;
+}
+
+@media (min-width: 768px) {
+    .layout-parcelas-grid {
+        grid-template-rows: auto 1fr;
+        grid-template-areas: "formulario lista";
+        align-items: start;
+    }
+}
+
+.container-formulario, .container-lista-parcelas {
+    height: -webkit-fill-available;
+    background-color: #2c3e50;
+    padding: 25px;
+    border-radius: 24px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ==========================================================================
+   SELECTOR DE TIPO (GASTO / INGRESO)
+   ========================================================================== */
+.tipo-selector-container {
+    display: flex;
+    background: #1a252f;
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid #3e5871;
+}
+
+.tipo-selector-container button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: #bdc3c7;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.tipo-selector-container button.active.gasto {
+    background-color: #e74c3c;
+    color: white;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.tipo-selector-container button.active.ingreso {
+    background-color: #2ecc71;
+    color: white;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+/* ==========================================================================
+   INPUTS FLOTANTES CON GRADIENTE BICOLOR
+   ========================================================================== */
+.form-parcelas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-content: center;
+    justify-content: center;
+    align-items: inherit;
+    justify-items: start;
+}
+
+.input-group.floating {
+    position: relative;
+    height: auto;
+    margin-top: 11px;
+}
+
+.input-group.floating input, 
+.input-group.floating textarea {
+    width: 100%;
+    background: #3e5871;
+    border: 2px solid #5d7d9a;
+    padding: 15px 12px;
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+    height: inherit;
+}
+
+.floating-label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bdc3c7;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    padding: 0 6px;
+    z-index: 10;
+}
+
+/* Ajuste para textarea */
+textarea ~ .floating-label {
+    top: 25px;
+    transform: translateY(0);
+}
+
+/* EFECTO DE CORTE: Gradiente Bicolor */
+.input-group.floating input:focus ~ .floating-label,
+.input-group.floating input:not(:placeholder-shown) ~ .floating-label,
+.input-group.floating textarea:focus ~ .floating-label,
+.input-group.floating textarea:not(:placeholder-shown) ~ .floating-label {
+    top: 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transform: translateY(-50%);
+    /* 50% arriba fondo formulario, 50% abajo fondo input */
+    background: linear-gradient(to bottom, #2c3e50 50%, #3e5871 50%);
+}
+
+/* Colores dinámicos al hacer foco */
+.form-parcelas:has(.active.gasto) .input-group.floating input:focus,
+.btn-guardar-parcela.gasto { border-color: #e74c3c; }
+
+.form-parcelas:has(.active.ingreso) .input-group.floating input:focus,
+.btn-guardar-parcela.ingreso { border-color: #2ecc71; }
+
+/* ==========================================================================
+   BOTÓN GUARDAR Y RADIOS
+   ========================================================================== */
+.btn-guardar-parcela {
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-guardar-parcela.gasto { background-color: #e74c3c; }
+.btn-guardar-parcela.ingreso { background-color: #2ecc71; }
+
+.radio-label.active-gasto { background-color: #e74c3c; color: white; font-weight: bold; }
+.radio-label.active-ingreso { background-color: #2ecc71; color: white; font-weight: bold; }
+
+/* ==========================================================================
+   LISTA Y LUPA
+   ========================================================================== */
+.header-lista {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.btn-lupa {
+    background: #3e5871;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-lupa:hover { background: #5d7d9a; transform: rotate(15deg); }
+
+.tabla-parcelas {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.card-parcela {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3e5871;
+    padding: 5px;
+    border-radius: 14px;
+    margin-bottom: 7px;
+}
+
+.card-parcela.gasto { border-left: 5px solid #e74c3c; }
+.card-parcela.ingreso { border-left: 5px solid #2ecc71; }
+
+/* ==========================================================================
+   MODAL DE BÚSQUEDA
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.search-input {
+    width: 100%;
+    background: #1a252f;
+    border: 2px solid #5d7d9a;
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #2ecc71;
+}
+
+.btn-cerrar {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid #bdc3c7;
+    color: #bdc3c7;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    float: right;
+}
+/* Esto asegura que si el botón de arriba es "Ingreso", los labels activos sean verdes */
+.form-parcelas:has(.active.ingreso) .input-group.floating input:focus ~ .floating-label {
+    color: #2ecc71;
+}
+
+/* El tag que aparece en la lista para identificar quién paga */
+.tag-responsable {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #bdc3c7;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.ok {
+  /* height: 580px !important; */
+}
+/* Ajuste del Header de la Lista */
+.header-lista {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 7px;
+}
+.area-lista{
+    padding: 5px !important;
+    height: 475px;
+}
+@media (min-width: 1024px) {
+    .header-lista {
+        flex-direction: row; /* En PC uno al lado del otro */
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.titulo-lupa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Radio Group más pequeño para el filtro */
+.filtro-lista {
+    background: #1a252f;
+    padding: 4px;
+    border-radius: 10px;
+    display: flex;
+    min-width: 250px;
+}
+
+.radio-label-mini {
+    flex: 1;
+    text-align: center;
+    padding: 6px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #bdc3c7;
+    transition: 0.3s;
+}
+
+.radio-label-mini input { display: none; }
+
+/* Colores de activación para el filtro */
+.active-todos {
+    background-color: #3e5871;
+    color: white;
+}
+
+.active-gasto {
+    background-color: #e74c3c !important;
+    color: white !important;
+}
+
+.active-ingreso {
+    background-color: #2ecc71 !important;
+    color: white !important;
+}
+
+/* Estilo para cuando no hay datos */
+.no-datos {
+    text-align: center;
+    padding: 40px;
+    color: #bdc3c7;
+    font-style: italic;
+}
+/* Para Chrome, Safari, Edge y Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Para Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

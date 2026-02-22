@@ -1,0 +1,295 @@
+/* --- VARIABLES Y BASES --- */
+:root {
+  --color-capital: #00ff6a;
+  --color-capital-border: #00ff6a;
+  --color-gastos: #ff1900;
+  --color-gastos-border: #ff1900;
+  --bg-dark: #34495e;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --text-soft: #94a3b8;
+}
+
+/* --- LAYOUT GENERAL --- */
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background: var(--bg-dark);
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+}
+
+.contenedor-dinamico {
+    padding: 0 15px;
+}
+
+/* --- SELECTOR DE MES --- */
+.contenedor-titulo-selector {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    height: 50px;
+    padding: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.selector-mes {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #FFF;
+    outline: none;
+}
+
+.selector-mes option {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* --- TARJETAS DE BALANCE SUPERIORES --- */
+.contenedor-balance {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.capital-container, .gastos-container {
+    min-width: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+}
+
+.capital-container {
+    background: var(--color-capital);
+    border-color: var(--color-capital-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 255, 106, 0.15);
+}
+
+.gastos-container {
+    background: var(--color-gastos);
+    border-color: var(--color-gastos-border);
+    box-shadow: 0 8px 32px 0 rgba(255, 25, 0, 0.15);
+}
+
+/* --- NAVEGACIÓN (BOTONES BALANCE/CAPITAL/GRAFICO) --- */
+.container-boton {
+    display: inline-flex;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 12px;
+    margin: 10px 0 15px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-balance {
+    background: transparent;
+    color: #a4b0be;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-balance:hover:not(.activee) {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.activee {
+    background-color: #2ed573;
+    color: #000 !important;
+    box-shadow: 0 4px 15px rgba(46, 213, 115, 0.3);
+}
+
+/* --- SECCIÓN COMPROMISOS (LIMPIEZA PROFESIONAL) --- */
+.planificador-vacio {
+    margin-top: 25px;
+    animation: fadeIn 0.5s ease;
+}
+
+.descripcion-compromisos {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.grid-compromisos {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 24px;
+    justify-content: center;
+  width: 100%;
+}
+
+.subtitulo-columna {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.subtitulo-columna .material-icons {
+    font-size: 1.1rem;
+    color: #64748b;
+}
+
+/* LISTA Y SCROLL */
+.scroll-lista {
+    max-height: max-content;
+    overflow-y: scroll;
+    padding: 10px;
+    width: max-content;
+    min-width: 250px;
+    width: max-content;
+    height: 300px;
+}
+
+.scroll-lista::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scroll-lista::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* ITEMS DE LA LISTA */
+.item-prediccion.mini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+}
+
+.item-prediccion.mini:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(4px);
+}
+
+.item-prediccion.mini span:first-child {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.monto-prediccion {
+    font-weight: 700;
+    color: #ff4d4d;
+}
+
+/* FOOTER DE TOTALES POR COLUMNA */
+.total-columna-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.total-columna-footer span:first-child {
+    color: var(--text-soft);
+}
+
+.total-columna-footer span:last-child {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 850px) {
+    .grid-compromisos {
+        grid-template-columns: 1fr;
+    }
+    .contenedor-balance {
+        flex-direction: column;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.columna-compromisos {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.1); /* Un fondo muy tenue para agrupar la columna */
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.total-columna-footer {
+    margin-top: auto; /* Empuja el total al fondo si la lista es corta */
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+@media (max-width: 850px) {
+    elemento {
+        margin-top: 12px;
+        padding: 0px 0px;
+        }
+
+    .contenedor-dinamico{
+        padding: 0 10px;
+    }
+    .planificador-vacio{
+        margin: 0;
+    }
+    .grid-compromisos{
+        width: 100%;
+    }
+    .columna-compromisos{
+        overflow: hidden;
+        height: 250px;
+    }
+    .subtitulo-columna {
+        margin: 0;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .scroll-lista{
+        overflow-y: scroll;
+        width: auto;
+        max-height: 300px;
+    } 
+}

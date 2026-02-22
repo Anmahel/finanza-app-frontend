@@ -1,0 +1,265 @@
+.container-gastos-total {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.container-formulario-gastos {
+    background-color: #2c3e50;
+    border-radius: 24px;
+    color: white;
+}
+
+.row-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.flex-2 { flex: 2; }
+.flex-1 { flex: 1; }
+
+select, textarea, input[type="date"], input[type="number"] {
+    background: #3e5871;
+    border: 2px solid transparent;
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
+}
+
+select:focus, input:focus {
+    border-color: #e74c3c; /* Color rojo para gastos */
+    outline: none;
+}
+
+.btn-guardar-gasto {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    /* padding: 16px; */
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* LISTA DE REGISTROS */
+.container-lista-gastos {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y: auto;
+}
+
+.item-gasto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gasto-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.gasto-cat {
+    font-weight: bold;
+    color: #ff7675;
+}
+
+.gasto-nota {
+    font-size: 0.85rem;
+    color: #bdc3c7;
+}
+
+.gasto-monto {
+    font-weight: bold;
+    color: #ff7675;
+}
+
+
+
+
+/* Contenedor Principal con Grid */
+.layout-gastos-grid {
+    display: grid;
+    gap: 20px;
+    padding: 10px;
+    /* Diseño para TLF (Móvil) */
+    grid-template-areas: 
+        "formulario"
+        "gasto";
+}
+
+/* Asignación de áreas */
+.area-formulario { grid-area: formulario; }
+.area-gasto { grid-area: gasto; }
+
+/* Configuración para PC (Escritorio) */
+@media (min-width: 768px) {
+    .layout-gastos-grid {
+        grid-template-columns: auto  1fr; /* Dos columnas iguales */
+        grid-template-areas: 
+            "formulario gasto";
+        align-items: start;
+        width: 100%;
+        height: 100%;
+        padding: 0 10px 4px 10px;
+        margin: 0;
+        max-width: 100%;
+    }
+}
+@media(max-width: 480px){
+    h3.tipografia-titulo {
+        margin: 0px !important;
+
+    }
+    .tipografia-titulo {
+        font-family: var(--fuente-titulos);
+        letter-spacing: -0.5px;
+        font-size: 13px !important;
+    }
+    .form-gastos {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        margin-top: 0px !important;
+        height: auto;
+        justify-content: space-between;
+    }
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        height: 55px;
+    }
+    .tipografia-datos {
+        font-family: var(--fuente-datos);
+        -webkit-font-smoothing: antialiased;
+        font-size: 11px;
+    }
+    .radio-group {
+        padding: 0px !important;
+        /* height: 30px; */
+    }
+    .row-inputs {
+        height: auto;
+    }
+    .btn-guardar-gasto {
+        padding: 5px !important;
+        /* margin-top: 0px !important; */
+    }
+    .item-gasto {
+       margin-bottom: 6px !important;
+        padding: 0px 5px !important;
+    }
+    .tabla-gastos {
+        margin-top: 5px !important;
+        /* max-height: 450px !important; */
+
+    }
+    select, textarea, input[type="date"], input[type="number"] {
+        padding: 2px !important;
+        height: stretch !important;
+    }
+    textarea{
+        padding: 2px !important;
+    }
+
+
+}
+ select.categotiass , input.monto{
+        padding: 2px !important;
+        height: inherit;
+    }
+#procedencia{
+    padding: 2px;
+}
+/* Estilos de los contenedores */
+.container-formulario-gastos, .container-lista-gastos {
+    height: -webkit-fill-available;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: #2c3e50;
+    border-radius: 24px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Estilo de la lista de gastos */
+.tabla-gastos {
+    margin-top: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.item-gasto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3e5871;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 14px;
+    border-left: 4px solid #e74c3c; /* Rojo para identificar gastos rápidamente */
+    transition: transform 0.2s;
+}
+
+.item-gasto:hover {
+    transform: translateX(5px);
+}
+
+.gasto-cat {
+    /* color: #ffa8b0; */
+    font-size: 1.1rem;
+}
+
+.gasto-monto {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Estilos del formulario (se mantienen de tu versión anterior) */
+.form-gastos { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; height: 100%;
+  justify-content: space-between;}
+.input-group { display: flex; flex-direction: column; gap: 5px; }
+.row-inputs { display: flex; gap: 10px;  justify-content: center;
+  align-content: center;
+  align-items: center;}
+.flex-2 { flex: 2; }
+.flex-1 { flex: 1; }
+
+select, textarea, input {
+    background: #3e5871;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    color: white;
+    outline: none;
+}
+
+.radio-group { display: flex; gap: 10px; background: #3e5871; padding: 5px; border-radius: 10px; }
+.radio-label { flex: 1; text-align: center; padding: 8px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+.radio-label input { display: none; }
+.radio-label.active { background-color: #e74c3c; font-weight: bold; }
+
+.btn-guardar-gasto {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    /* padding: 16px; */
+    border-radius: 14px;
+    cursor: pointer;
+    margin-top: 15px
+}

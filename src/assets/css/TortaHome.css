@@ -1,0 +1,430 @@
+.fade-in{
+    height: 100%;
+    overflow: hidden;
+}
+
+.container-mayor-torta {
+    display: grid;
+    align-content: center;
+    justify-items: stretch;
+    grid-template-areas:
+        "buton"
+        "estadistica";
+    grid-template-rows: 60px 1fr;
+    justify-content: stretch;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+}
+.container-Torta {
+    overflow: hidden;
+    grid-area: estadistica;
+    /* height: 80%; */
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "grafico1"
+        "que";
+    /* grid-template-rows: auto 1fr; */
+    grid-template-rows: auto 1fr;
+    align-content: start;
+}
+    
+    
+
+/* Para que el rojo también llegue hasta abajo */
+.Categorias_torta {
+    grid-area: que;
+    height: 100%; 
+}
+.Torta{
+    position: relative;
+    cursor: default;
+    overflow: hidden;
+}
+.container-barras {
+    grid-area: grafico2;
+
+}
+.Torta-wrapper {
+    grid-area: grafico1;
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recharts-wrapper {
+    position: relative;
+    cursor: default;
+    width: 100%;
+    max-height: max-content;
+    min-height: auto;
+}
+/* Estilo para la barra de scroll (Opcional pero recomendado) */
+.Categorias-container::-webkit-scrollbar-thumb {
+    background: #bdc3c7; /* Color plata para que resalte en el azul */
+    border-radius: 10px;
+}
+
+.Categorias-container::-webkit-scrollbar-track {
+    background: rgba(52, 73, 94, 0.5); /* Fondo azul más oscuro */
+}
+.container-mayor-boton{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.container-boton {
+    grid-area: buton;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin: 5px 0px 0px 5px;
+}
+
+/* En tu archivo CSS */
+.btn-balance {
+    color: black;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* transition: background-color 0.6s ease, color 0.6s ease; */
+    height: 100%;
+    max-width: min-content;
+    font-size: 16px;
+    font-weight: 100;
+}
+.activee {
+ transition: all 0.6s ease;
+  color: white;
+ background-color: #34495e; /* Color del sidebar */
+ box-shadow: 0 4px 6px rgba(52, 73, 94, 0.3); /* Sombra suave */
+
+}
+nav.Categorias_torta {
+    overflow: hidden;
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.Categorias-container {
+  padding: 0 10px;
+  width: 100%;
+/* max-height: 300px; */
+height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 11px;
+  flex-wrap: nowrap;
+}
+ /* Opcional: Personaliza la barra de scroll para que se vea moderna */
+.Categorias-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.Categorias-container::-webkit-scrollbar-thumb {
+    background: rgba(190, 244, 174, 0.811);
+    border-radius: 10px;
+}
+
+.Categorias-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+li.sub-categoria {
+    width: 100%;
+}
+button.de-categoria {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+}
+button.de-categoria div.icon{
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+button.de-categoria p.gastado{
+    color: white;
+}
+
+.sub-categoria button {
+    background: rgba(255, 255, 255, 0.05); /* Fondo casi transparente */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    transition: background 0.3s;
+    background-color: rgb(62, 88, 113);
+    height: 50px;
+}
+
+.sub-categoria button:hover {
+    background: rgba(255, 255, 255, 0.1); /* Brillo suave al pasar el mouse */
+}
+
+/* El icono circular que ya tienes se verá genial sobre este fondo neutro */
+/* Quita el borde negro/azul que sale al hacer clic en los trozos de la torta */
+.recharts-pie-sector:focus {
+    outline: none !important;
+}
+
+/* Quita el borde del contenedor general del gráfico */
+.recharts-surface:focus {
+    outline: none !important;
+}
+
+/* Por seguridad, quitamos cualquier sombra de enfoque en el SVG */
+svg:focus {
+    outline: none !important;
+}
+/* Esto mata cualquier borde de selección en todo el gráfico */
+.recharts-wrapper, 
+.recharts-surface, 
+.recharts-pie-sector,
+.recharts-sector {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent; /* Quita el destello en móviles */
+    /* height: 580px !important; */
+}
+
+/* Específicamente para el área que rodea los trozos */
+path.recharts-sector:focus {
+    outline: none !important;
+}
+
+
+/* --- DISEÑO PARA PC (Pantallas mayores a 768px) --- */
+@media (min-width: 768px) {
+    .container-Torta {
+        /* Tu estructura de PC */
+        grid-template-areas:
+            "grafico1 grafico1"
+            "que      que";
+        
+        /* Ajustamos las columnas: 40% izquierda, 60% derecha para las barras */
+        grid-template-columns: 40% 60%;
+        grid-template-rows: auto 1fr;
+    }
+    /* Configuración para PC (Escritorio) */
+    .recharts-responsive-container{
+        height: 83% !important;
+    }
+}
+
+/* Asignación de áreas (Asegúrate de que estas clases estén en tu HTML) */
+.Torta-wrapper { 
+    grid-area: grafico1; 
+}
+
+.Categorias_torta { 
+    grid-area: que; 
+}
+
+.container-barras { 
+    grid-area: grafico2; 
+    width: 100%;
+}
+   
+.bara{
+    grid-area: grafico2;
+    width: 100%;
+    height: 100%;
+}
+/* --- ESTO ES PARA LAS BARRAS --- */
+
+/* 1. Atacamos la clase específica de las barras */
+.recharts-bar-rectangle:focus,
+.recharts-rectangle:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+/* 2. Atacamos el "path" (el dibujo interno) que es lo que realmente brilla en negro */
+path.recharts-rectangle:focus {
+    outline: none !important;
+}
+
+/* 3. Por si las barras tienen estados activos/activos */
+.recharts-active-bar:focus {
+    outline: none !important;
+}
+
+/* 4. Limpieza general para cualquier celda o rectángulo del gráfico */
+.recharts-cell:focus {
+    outline: none !important;
+}
+/* 1. Quita el borde del grupo de barras (lo que ves en Nov) */
+.recharts-bar-item:focus,
+.recharts-bar-rectangle:focus,
+.recharts-active-bar:focus {
+    outline: none !important;
+}
+
+/* 2. Quita el borde de cualquier rectángulo o celda */
+.recharts-rectangle:focus,
+.recharts-cell:focus {
+    outline: none !important;
+}
+
+/* 3. Refuerzo para los paths internos del SVG */
+path:focus {
+    outline: none !important;
+}
+
+/* 4. Quita el borde del contenedor principal si haces clic fuera */
+.recharts-wrapper:focus {
+    outline: none !important;
+}
+/* Estado base de la fila */
+.sub-categoria {
+    list-style: none;
+    transition: transform  1s ease, filter 1s  ease;
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse por la fila */
+.sub-categoria:hover {
+    /* Un ligero levantamiento */
+    transform: translateY(-2px);
+    /* Resalta la fila con un brillo sutil */
+    filter: brightness(1.2);
+}
+
+/* Efecto específico para el botón dentro de la fila */
+.sub-categoria:hover .de-categoria {
+    /* Hacemos el fondo un poco más claro que el #3e5871 original */
+    background-color: #4a6b8a !important; 
+    /* Una sombra para dar profundidad */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Animación opcional para el icono al hacer hover */
+.sub-categoria:hover .icon svg {
+    transform: scale(1.1);
+    transition: transform 10s ease;
+}
+
+
+/* Configuración para PC (Escritorio) */
+@media (min-width: 768px) {
+   .Categorias-container {
+        height: 100%;
+        max-height: 100%;
+    }
+}
+
+/* Tu configuración actual se mantiene igual */
+.container-Torta {
+  display: grid;
+  grid-template-areas:
+    "grafico1 grafico1" 
+    "que      que     ";
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto 1fr;
+}
+
+/* NUEVA REGLA: Cuando esté activado el modo Gráfico */
+.container-Torta.modo-full-grafico {
+  display: block; /* Cambiamos de grid a block para que el hijo ocupe todo */
+  width: 100%;
+}
+
+.modo-full-grafico .BarChart-wrapper {
+  width: 100%;
+  height: 450px; /* Ajusta la altura que desees para el gráfico de barras */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Asegúrate de que el ResponsiveContainer tenga espacio */
+.BarChart-wrapper .bara {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Cuando el botón es "Grafico", forzamos que el contenedor ocupe todo */
+.container-Torta.modo-full {
+  display: flex !important; /* Cambiamos de grid a flex para expansión total */
+  grid-template-areas: none; /* Quitamos las áreas */
+  width: 100%;
+  height: 100%;
+  min-height: 350px; /* Asegura un espacio mínimo */
+}
+
+.modo-full .BarChart-wrapper {
+  width: 100%;
+  height: 100%;
+  flex: 1; /* Toma todo el espacio disponible */
+}
+
+/* Ajuste para que el SimpleBarChart no tenga límites internos */
+.BarChart-wrapper .bara {
+  width: 100% !important;
+  height: 400px !important; /* Altura ideal para móviles y desktop */
+}
+
+/* --- DISEÑO PARA PC (Pantallas mayores a 768px) --- */
+@media (min-width: 768px) {
+    .container-Torta {
+        display: grid;
+        /* Ponemos la torta y la lista una al lado de la otra */
+        grid-template-areas:
+            "grafico1 que"; 
+        
+        /* Definimos el ancho: 40% para la torta, 60% para la lista */
+        grid-template-columns: 45% 55%; 
+        grid-template-rows: 1fr;
+        align-items: center; /* Centra la torta verticalmente respecto a la lista */
+        gap: 20px;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Ajuste para que la lista no se desborde y tenga su propio scroll si es larga */
+    .Categorias_torta {
+        height: 100%;
+        max-height: 500px; /* Ajusta según el alto de tu pantalla */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Categorias-container {
+        overflow-y: auto;
+        justify-content: flex-start; /* Alinea los items arriba */
+    }
+
+    /* Aseguramos que la torta no crezca más de su contenedor */
+    .Torta-wrapper {
+        width: 100%;
+        height: auto;
+    }
+}

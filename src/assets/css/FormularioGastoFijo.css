@@ -1,0 +1,76 @@
+.manager-fijos {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.separator {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.header-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.grid-fijos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-fijo-item {
+    background: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-fijo-item .name {
+    font-weight: 700;
+    color: #2f3542;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.card-fijo-item .details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #747d8c;
+}
+
+.btn-delete {
+    background: #fff0f0;
+    color: #ff4757;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-delete:hover {
+    background: #ff4757;
+    color: white;
+}
+.manager-container{
+    display: grid;
+    grid-template-areas: "add" " lis";
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
+/* --- DISEÑO PARA PC (Pantallas mayores a 768px) --- */
+@media (min-width: 768px) {
+    .manager-container{
+        grid-template-areas: "add lis";
+        grid-template-columns: auto 1fr;
+    }
+}

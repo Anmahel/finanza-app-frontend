@@ -1,0 +1,1 @@
+bun create vite@latest mi-app-finanzas --template react-ts

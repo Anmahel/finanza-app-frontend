@@ -1,0 +1,313 @@
+.container-formulario {
+    width: 100% !important;
+    background-color: #2c3e50;
+    padding: 0px !important;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* .form-capital {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+} */
+.form-capital {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group input {
+    background: #3e5871;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 8px;
+    background: #1a252f; /* Un tono más oscuro que el fondo para dar profundidad */
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid #3e5871;
+}
+
+.radio-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #bdc3c7;
+    position: relative;
+    z-index: 1;
+    /* Transición suave para color y fondo */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Efecto Hover (antes de hacer click) */
+.radio-label:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ESTADO ACTIVO: Animación principal */
+.radio-label.active {
+    background-color: #2ecc71 ; 
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    /* Animación de "pop" o pulso al activarse */
+    animation: radioPop 0.3s ease-out;
+}
+
+/* Pequeño indicador visual opcional (un puntito abajo) */
+/* .radio-label.active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+} */
+
+/* Definición de la animación de pulso */
+@keyframes radioPop {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Escondemos el radio nativo pero mantenemos accesibilidad */
+.radio-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.btn-guardar {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-guardar:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+/* Contenedor Principal con Grid */
+.layout-capital-grid {
+    display: grid;
+    gap: 20px;
+    padding: 10px;
+    /* Móvil por defecto */
+    grid-template-areas: 
+        "formulario"
+        "estadistica";
+        grid-template-rows: auto 1fr;
+  height: 100%;
+}
+.input-group{
+    height: auto;
+}
+button {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor relativo para posicionar el label */
+.input-group.floating {
+    position: relative;
+    margin-top: 5px; /* Espacio extra para que el label no choque arriba */
+}
+
+.input-group.floating input {
+    width: 100%;
+    background: #3e5871;
+    /* border: 2px solid transparent; Añadimos borde para el foco */
+    border: 2px solid #5d7d9a;
+    padding: 15px 12px; /* Más padding arriba para el espacio del label */
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Estilo inicial del Label (dentro del input como un placeholder) */
+.floating-label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%); /* Centrada verticalmente al inicio */
+    color: #bdc3c7;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    padding: 0 6px; /* Espacio a los lados para que el "corte" del borde sea limpio */
+    font-size: 1rem;
+    z-index: 10; /* Asegura que esté por encima del borde */
+    background: transparent;
+}
+
+/* EFECTO: Cuando el input tiene foco O cuando no está vacío */
+.input-group.floating input:focus ~ .floating-label,
+.input-group.floating input:not(:placeholder-shown) ~ .floating-label {
+    top: 0; /* Sube justo al nivel del borde superior */
+    font-size: 0.85rem;
+    color: #2ecc71; /* Color verde cuando está activo */
+    font-weight: bold;
+    
+    /* AQUÍ ESTÁ LA CLAVE: */
+    /* Usamos el color del fondo del FORMULARIO (#2c3e50) para tapar el borde */
+    /* background-color: #2c3e50;  */
+    background: linear-gradient(
+        to bottom, 
+        #2c3e50 50%, 
+        #3e5871 50%
+    );
+}
+
+/* Cambiar el borde del input al hacer foco */
+.input-group.floating input:focus {
+    border-color: #2ecc71;
+}
+/* Áreas */
+.area-formulario { grid-area: formulario; }
+.area-estadistica { grid-area: estadistica; }
+
+/* Configuración para PC */
+@media (min-width: 768px) {
+    .layout-capital-grid {
+        grid-template-columns: auto 1fr; /* Dos columnas iguales */
+        grid-template-areas: 
+            "formulario estadistica";
+        width: 100%;
+        margin: 0 auto;
+        height: -webkit-fill-available;
+        padding-bottom: 5px;
+    }
+    .area-formulario {
+        padding: 0;
+}
+}
+
+/* --- Estilos de la Lista --- */
+.container-lista-registros {
+    background-color: #2c3e50;
+    padding: 2px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.scroll-lista {
+    /* margin-top: 15px; */
+    max-height: min-content;
+    max-height: 550px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.card-registro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3e5871;
+    margin-bottom: 10px;
+    /* padding: 15px; */
+    padding: 7px;
+    border-radius: 12px;
+    border-left: 4px solid #2ecc71; /* Color verde para ingresos */
+}
+
+.info-registro {
+    display: flex;
+    flex-direction: column;
+}
+
+.procedencia-txt {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.socio-txt {
+    font-size: 0.8rem;
+    color: #bdc3c7; 
+}
+
+.monto-registro {
+    font-weight: bold;
+    color: #2ecc71;
+    font-size: 1.2rem;
+}
+
+.no-datos {
+    text-align: center;
+    color: #bdc3c7;
+    margin-top: 20px;
+}
+.scroll-lista::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scroll-lista::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* 1. Contenedor del scroll */
+.scroll-lista {
+    max-height: 400px; /* Ajustado según tu diseño actual */
+    overflow-y: auto;
+    padding-right: 10px;
+    
+    /* Firefox: Barra delgada y sutil */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* 2. Chrome, Edge y Safari (WebKit) */
+
+/* Tamaño de la barra (ancho) */
+.scroll-lista::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* El fondo de la barra (el carril) */
+.scroll-lista::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* El "tirador" de la barra (lo que se mueve) */
+.scroll-lista::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1); /* Color gris muy suave y transparente */
+    border-radius: 10px; /* Bordes redondeados para que se vea moderno */
+    transition: background 0.3s ease;
+}
+
+/* Color cuando pasas el mouse por encima del scroll */
+.scroll-lista::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2); /* Se aclara un poco al tocarlo */
+}
